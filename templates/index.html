@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <section class="section-1-homepage">
+        <div class="container">
+            <h2>Introducing <span style="color:var(--primary);">Tari9i</span>,</h2>
+            <p>Tari9i is an AI-powered chatbot designed to help Moroccan youth navigate their career and educational paths with ease. Using advanced artificial intelligence algorithms, Tari9i offers personalized guidance and insights, helping young people make informed decisions about their future. With intuitive conversations and actionable recommendations, Tari9i takes the guesswork out of career planning, education choices, and skill development. Say goodbye to confusion and uncertainty, and let Tari9i be your trusted guide on the journey to a brighter future. Whether you're exploring career options, considering higher education, or seeking skill-building opportunities, Tari9i provides instant, reliable advice tailored just for you.</p>
+            <div class="btn-container">
+                <button class="primary" onclick="window.location='{{ url_for('signup') }}'">Get Started</button>
+                <button class="secondary" onclick="window.location='{{ url_for('login') }}'">Already a Member</button>
+            </div>
+        </div>
+        <div class="robot-image"></div>
+        <div class="robot-image-shadow"></div>
+    </section>
+
+    <section class="seciton-2-homepage">
+        <div class="container">
+            <p>Database</p>
+            <ul class="list">
+                <li>MongoDB</li>
+            </ul>
+        </div>
+        <div class="container">
+            <p>Technologies</p>
+            <ul class="list">
+                <p>Frontend</p>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JS</li>
+                <li>AJAX</li>
+                <p>Backend</p>
+                <li>Flask</li>
+                <p>Prediction & NLP</p>
+                <li>NLTK</li>
+                <li>Scikit-learn</li>
+            </ul>
+        </div>
+        <div class="container">
+            <p>APIs</p>
+            <ul class="list">
+                <li>Yahoo Finance</li>
+                <li>Twelve Data</li>
+                <li>CoinMarketCapAPI</li>
+            </ul>
+        </div>
+    </section>
+
+{% endblock %}
