@@ -11,25 +11,22 @@ from functions import *
 
 import json
 import pickle
-from ChatBot import Chat
+from ChatBot import *
 from Bot_functions import *
 from keras.models import load_model
 
-#if the model exists we do not train else we do
-if not(os.path.exists("./BotData/test_model.h5")):
-    with open('./BotData/training.py', 'r') as f:
-        code = compile(f.read(), './BotData/training.py', 'exec')
-        exec(code)
+# Initialize the chatbot
+json_file_path = 'Model/topics_data.json'  # Replace with your JSON file path
+groq_api_key = "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"  # Replace with your Groq API key
+chatbot = CareerCounselingChatbot(json_file_path, groq_api_key)
         
-#importing the bot data    
-intents = json.loads(open('./BotData/Data.json',encoding='utf-8').read())
-
-words = pickle.load(open('./BotData/words_test.pkl','rb'))
-classes = pickle.load(open('./BotData/classes_test.pkl','rb'))
-
-model = load_model('./BotData/test_model.h5')
-
-chat = Chat(intents,words,classes,model)
+# # Example user profile
+# user_profile = chatbot.create_user_profile(
+#     name="John Doe",
+#     career_goals="Data Science",
+#     education="Bachelor's in Computer Science",
+#     skills="Python, Machine Learning"
+# )
 
 
 app = Flask(__name__)
@@ -78,7 +75,6 @@ def login():
             if check_password_hash(user["password"], password):
                 # Correct Password
                 session["id"] = str(user["_id"])
-                chat.get_respoonse("message")
                 return redirect(url_for('bot'))
             else:
                 # Wrong Password
@@ -123,7 +119,6 @@ def signup():
             # Creating a new chat for the new user
             records = db.chats
             records.insert_one({"user":session["id"]})
-            chat.get_respoonse("message")
             return redirect(url_for('bot'))
             
     return render_template("signup.html", form=form, error=error)
@@ -181,9 +176,10 @@ def bot():
             records.insert_one({"user": session["id"], "chat": target, "message": message, "type": "user", "date":dt_string})
             
             # AI Thingie Here
-            res,tag = chat.get_respoonse(message.lower())
-            # records.insert_one({"type": "bot", "chat": target, "message": ['NORMAL REPLY','hello there'], "date":dt_string}) 
-            records.insert_one({"bot": session["id"], "chat": target, "message": ['NORMAL REPLY',res], "type": "bot", "date":dt_string})
+            
+            response = chatbot.get_response(message)
+            response = clean_response_for_html(response)
+            records.insert_one({"bot": session["id"], "chat": target, "message": ['NORMAL REPLY',response], "type": "bot", "date":dt_string})
 
     return render_template("bot.html")
 

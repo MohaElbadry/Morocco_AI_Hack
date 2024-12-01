@@ -5,7 +5,6 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.memory import ConversationBufferMemory
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-import re
 
 class CareerCounselingChatbot:
     def __init__(self, json_file_path, groq_api_key):
@@ -65,9 +64,7 @@ class CareerCounselingChatbot:
                             for subtopic in topic['subtopic']:
                                 context += f"  * {subtopic}\n"
                 context += "\n"
-        
         return context
-
 
     # Function to create the chat chain
     def create_chat_chain(self):
@@ -91,30 +88,40 @@ class CareerCounselingChatbot:
         }
 
     # Function to interact with the chatbot and get responses
-    def get_response(self, user_input, user_profile=None):
+    def get_response(self, user_input, user_profile):
         try:
-            if user_profile:
-                # Add user profile to context only once at the beginning of the conversation
-                profile_context = f"User Profile:\nName: {user_profile['name']}\nCareer Goals: {user_profile['career_goals']}\nEducation: {user_profile['education']}\nSkills: {user_profile['skills']}\n\n"
-                # Update prompt to include the user profile once
-                prompt_with_profile = ChatPromptTemplate.from_messages([
-                    ("system", f"You are a career counseling AI assistant. Use the following external knowledge when relevant:\n{self.external_context}\n{profile_context}\n\nRespond conversationally, guiding the user towards their career goals and suggesting personalized advice."),
-                    MessagesPlaceholder(variable_name="chat_history"),
-                    ("human", "{input}")
-                ])
-                self.chat_chain = self.create_chat_chain()  # Reinitialize chain with new prompt including user profile
-                self.prompt = prompt_with_profile  # Set the prompt with the user profile context
-
+            # Customize the chatbot's response based on the user profile
+            customized_input = f"{user_profile['career_goals']} | {user_profile['education']} | {user_profile['skills']} | {user_input}"
+            
             # Generate response
-            response = self.chat_chain.invoke({"input": user_input})
+            response = self.chat_chain.invoke({"input": customized_input})
             
             # Add messages to memory
             self.memory.chat_memory.add_user_message(user_input)
             self.memory.chat_memory.add_ai_message(response)
             
-            # Clean up response formatting before returning
             return response
 
         except Exception as e:
             print(f"An error occurred: {e}")
             return "Sorry, I couldn't process that request."
+
+# Example usage:
+if __name__ == "__main__":
+    # Initialize the chatbot
+    json_file_path = 'topics_data.json'  # Replace with your JSON file path
+    groq_api_key = "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"  # Replace with your Groq API key
+    chatbot = CareerCounselingChatbot(json_file_path, groq_api_key)
+
+    # Example user profile
+    user_profile = chatbot.create_user_profile(
+        name="John Doe",
+        career_goals="Data Science",
+        education="Bachelor's in Computer Science",
+        skills="Python, Machine Learning"
+    )
+
+    # Simulating a conversation
+    user_input = "What courses should I take to improve my skills?"
+    response = chatbot.get_response(user_input, user_profile)
+    print("AI Chatbot:", response)

@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="icon" href="{{ url_for('static', filename='res/Front_logo.png') }}" type="Front_logo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js" integrity="sha512-V0j9LhrK9IMNdFYZqh+IqU4cjo7wdxyHNyH+L0td4HryBuZ7Oq6QxP2/CWr6TituX31+gv5PnolvERuTbz8UNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Tari9i</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>TARI9 AI</title>
 </head> 
 <body>
     {% block head %}
     <header class="navbar">
 
         <div class="logo" onclick="window.location='/'"></div>
-        {% if "id" in session %}
+        {% if "id" in session %}    
 
         
         <div class="btn-container-dis">

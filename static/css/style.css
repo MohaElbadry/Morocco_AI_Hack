@@ -2,15 +2,15 @@
 
 :root{
     --background: #FAF3E0;
-    --grey-1: #525252;
-    --convo-grey: #ebebeb;
+    --grey-1: #2A2A2A;
+    --convo-grey: #e4c295   ;
     --message-grey: #222222;
     --message-white: #e1e1e1;
     --primary:#C1272D;
-    --primary-hover: #ff002f;
+    --primary-hover: #FF6F61;
     --primary-focus: #ff123e78;
-    --secondary: #F4A261;
-    --white: #0e0e0e;
+    --secondary: #ebd1bc;
+    --white: #ffffff;
   
     --background-image: url('/static/res/logo-light.png');
 
@@ -47,7 +47,7 @@ body {
 }
 .navbar .logo {
     background-image: var(--background-image);
-    height: 1.5em;
+    height: 2em;
     width: 12.5em;
     background-position: center;
     background-repeat: no-repeat;
@@ -61,10 +61,7 @@ body {
     flex-direction: row;
     gap: 1em;
     align-items: center;
-}
-.navbar .btn-container-dis {
-
-}
+}   
 .navbar button {
     border-radius: 6px;
     font-size: 16px;
@@ -271,7 +268,7 @@ body {
 .form-container .form input {
     padding: .65em 1.5em;
     background-color: var(--convo-grey);
-    color: var(--white);
+    color: white;
     border-radius: 6px;
     border-width: 2px;
     border-color: var(--grey-1);
@@ -283,6 +280,7 @@ body {
 }
 .form-container .form input:focus {
     border-color: var(--primary-focus);
+
 }
 .form-container .form .button {
     background-color: var(--primary);
@@ -560,6 +558,43 @@ body {
     opacity: .6;
 }
 
+.gradient-text {
+    background: linear-gradient(90deg, #C1272D, teal );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.career-card {
+    transition: all 0.3s ease;
+    transform-origin: center;
+    background-color: #b4262b;
+    color: white;
+}
+
+.career-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+
+@keyframes blob {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 5s infinite;
+}
 
 @keyframes send {
     0% {opacity: 1;}
