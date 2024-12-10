@@ -1,40 +1,42 @@
-# Finance Chatbot
+"""
+# Tari9i - AI-Powered Career Counseling Chatbot
 
 ## Overview
 
-This repository contains a chatbot application designed to assist users with financial inquiries, budgeting, and investment advice. The chatbot leverages natural language processing to provide personalized responses and recommendations based on user input.
+This repository contains the "Tari9i" chatbot application designed to provide personalized career counseling for users. By leveraging LangChain and Hugging Face's text generation model, the chatbot offers guidance on career paths, job opportunities, and professional development tailored to individual needs.
 
 ## Features
 
-- **Conversational Interface**: Users can interact with the chatbot through a friendly chat interface.
-- **Financial Advice**: The chatbot provides personalized financial tips and advice based on user queries.
-- **Budgeting Tools**: Users can track their expenses and get suggestions for budget planning.
-- **Investment Insights**: The chatbot offers insights into different investment options and strategies.
-- **API Integration**: Provides endpoints for integrating chatbot functionalities into other applications.
+- **Conversational Interface**: Users interact with the chatbot through a user-friendly interface, receiving personalized career advice.
+- **Career Guidance**: The chatbot helps users explore various career paths, including suggestions based on their interests and skills.
+- **Job Opportunities**: Offers insights into job market trends and potential job opportunities aligned with user preferences.
+- **Personalized Advice**: Provides tailored career development recommendations, helping users improve their skills and make informed decisions.
+- **API Integration**: Exposes endpoints for integrating chatbot functionalities into other applications or platforms.
 
 ## Demo
 
-Check out the demo video of the Finance Chatbot App in action:  
-[![Watch the demo video](https://img.youtube.com/vi/defbE6fyKOE/0.jpg)](https://youtu.be/defbE6fyKOE)
-
+Check out the demo video of the "Tari9i" Career Counseling Chatbot in action:  
+[![Watch the demo video](https://img.youtube.com/vi/c07q_npy87Q/0.jpg)](https://youtu.be/c07q_npy87Q)
 
 ## Prerequisites
 
 - Python 3.7 or later
-- Flask
-- Natural Language Processing libraries (e.g., NLTK, spaCy)
+- LangChain
+- Hugging Face API (for text generation model)
+- Flask (optional for web-based interface)
+- Other necessary NLP libraries (e.g., NLTK, spaCy)
 
 ## Contributing
 
-Contributions are welcome! Please create a pull request or open an issue to discuss your ideas.
+Contributions are welcome! Feel free to fork the repository, create a pull request, or open an issue for suggestions or improvements.
 
-##License
+## License
 
 This project is licensed under the MIT License.
 
-##Acknowledgements
+## Acknowledgements
 
-Open-source libraries and tools used in this project.
-Financial datasets and resources for training the chatbot.
-
-
+- LangChain and Hugging Face for providing the text generation model and APIs.
+- Open-source libraries used for NLP and backend development.
+- Resources and datasets for training the career counseling model.
+"""
